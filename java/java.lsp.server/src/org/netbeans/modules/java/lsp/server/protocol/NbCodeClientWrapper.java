@@ -18,6 +18,7 @@
  */
 package org.netbeans.modules.java.lsp.server.protocol;
 
+import org.netbeans.modules.java.lsp.server.explorer.api.NodeChangedParams;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.eclipse.lsp4j.ApplyWorkspaceEditParams;
@@ -66,6 +67,11 @@ class NbCodeClientWrapper implements NbCodeLanguageClient {
     @Override
     public void showStatusBarMessage(ShowStatusMessageParams params) {
         remote.showStatusBarMessage(params);
+    }
+
+    @Override
+    public CompletableFuture<String> showHtmlPage(HtmlPageParams params) {
+        return remote.showHtmlPage(params);
     }
 
     @Override
@@ -182,4 +188,14 @@ class NbCodeClientWrapper implements NbCodeLanguageClient {
     public CompletableFuture<Void> refreshCodeLenses() {
         return remote.refreshCodeLenses();
     }
+    
+    public void notifyNodeChange(NodeChangedParams params) {
+        remote.notifyNodeChange(params);
+    }
+    
+    @Override
+    public CompletableFuture<Void> configurationUpdate(UpdateConfigParams params) {
+        return remote.configurationUpdate(params);
+    }
+    
 }
