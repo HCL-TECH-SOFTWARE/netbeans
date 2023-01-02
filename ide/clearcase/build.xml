@@ -43,6 +43,9 @@
  made subject to such option by the copyright holder.
 -->
 <project basedir="." default="netbeans" name="ide/clearcase">
+    <copy todir="./src">
+      <fileset dir="../versionvault/src" excludes="**/*.properties"/>
+    </copy>
     <description>Builds, tests, and runs the project org.netbeans.modules.clearcase</description>
     <import file="../../nbbuild/templates/projectized.xml"/>
 </project>
